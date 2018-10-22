@@ -7,18 +7,16 @@ class Base extends React.Component {
     super();
 
     this.state = {
-      circle: { x: 50, y: 50, isSelected: false }
-    };
+      shapes: {
+        0: { x: 50, y: 50, isSelected: false }
+      }
+    }; 
   };
 
-  log (content) {
-    console.log(content);
-  }
-
-  setSelected = (isSelected) => {
-    let shape = Object.assign({}, this.state.circle);
-    shape.isSelected = isSelected;
-    this.setState({ circle: shape });
+  setSelected = (id, isSelected) => {
+    let shapes = Object.assign({}, this.state.shapes);
+    shapes[id].isSelected = isSelected;
+    this.setState({ shapes });
   }
 
   mouseMove = (e) => {
@@ -42,7 +40,9 @@ class Base extends React.Component {
       <svg width={width} height={height} onMouseUp={this.mouseUp} onMouseMove={this.mouseMove}>
         <rect width='100%' height='100%' fill={fill} />
 
-        <Circle position={[circle.x, circle.y]} r='40' fill='yellow' isSelected={this.setSelected}/>
+        <Circle x={circle.x} y={circle.y} r='40' fill='yellow' isSelected={this.setSelected} />
+
+        {/* <Rectangle x isSelected={this.setSelected} /> */}
       </svg>
     );
   }

@@ -5,10 +5,10 @@ import Shape from './Shape';
 class Circle extends Shape {
 
   render () {
-    const { position, r, fill } = this.props;
+    const { x, y, r, fill } = this.props;
 
     return (
-      <circle cx={position[0]} cy={position[1]} r={r} fill={fill} onMouseDown={this.mouseDown} />
+      <circle cx={x} cy={y} r={r} fill={fill} onMouseDown={this.mouseDown} />
     );
   }
 }
