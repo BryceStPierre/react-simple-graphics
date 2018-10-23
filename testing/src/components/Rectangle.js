@@ -5,14 +5,15 @@ import Shape from './Shape';
 class Rectangle extends Shape {
 
   render () {
-    const { position, width, height } = this.props;
+    const { x, y, width, height, fill } = this.props;
 
     return (
       <rect 
-        x={position[0]} 
-        y={position[1]} 
+        x={x} 
+        y={y} 
         width={width} 
-        height={height} />
+        height={height} 
+        fill={fill} onMouseDown={this.mouseDown} />
     );
   }
 }
