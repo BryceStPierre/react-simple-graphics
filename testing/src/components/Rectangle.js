@@ -1,19 +1,18 @@
 import React from 'react';
-
 import Shape from './Shape';
 
 class Rectangle extends Shape {
-
-  render () {
-    const { x, y, width, height, fill } = this.props;
-
+  render() {
     return (
       <rect 
-        x={x} 
-        y={y} 
-        width={width} 
-        height={height} 
-        fill={fill} onMouseDown={this.mouseDown} />
+        x={this.props.x} 
+        y={this.props.y} 
+        width={this.props.width}
+        height={this.props.height}
+        fill={this.props.fill} 
+        onMouseDown={this.handleDragStart} 
+        onTouchStart={this.handleDragStart}
+      />
     );
   }
 }

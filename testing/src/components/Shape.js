@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Shape extends React.Component {
+class Shape extends Component {
 
-  mouseDown = (e) => {
-    this.props.selectShape(this.props.id);
-  };
+  handleDragStart = (e) => {
+    let data = Object.assign({}, this.props);
+    data.isDragging = true;
+    this.props.onUpdate(this.props.index, data);
+  }
 }
 
 export default Shape;
