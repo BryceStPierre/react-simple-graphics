@@ -8,15 +8,27 @@ class Shape extends React.Component {
 
   dragging = (e) => {
     if (this.state.isMouseDown) {
-      this.setState({
-        x: e.clientX,
-        y: e.clientY
-      });
+      if (e.touches && e.touches[0]) {
+        this.draggingUpdate(e.touches[0]);
+      } else {
+        this.draggingUpdate(e);
+      }
     }
+  }
+
+  draggingUpdate = (e) => {
+    this.setState({
+      x: e.clientX + this.positionModification(true),
+      y: e.clientY + this.positionModification(false)
+    });
   }
 
   dragEnd = (e) => {
     this.setState({ isMouseDown: false });
+  }
+
+  positionModification = (isX) => {
+    return 0;
   }
 }
 

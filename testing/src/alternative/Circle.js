@@ -28,6 +28,9 @@ class Circle extends Shape {
         onMouseDown={this.dragStart} 
         onMouseMove={this.dragging} 
         onMouseUp={this.dragEnd} 
+        onTouchStart={this.dragStart}
+        onTouchMove={this.dragging}
+        onTouchEnd={this.dragEnd} 
       />
     );
   }
