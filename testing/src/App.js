@@ -1,36 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Base from './components/Base';
+import SimpleGraphicsApp from './components/SimpleGraphicsApp';
+import SimpleGraphicsBase from './components/graphics/SimpleGraphicsBase';
 
-class App extends Component {
+
+class App extends SimpleGraphicsApp {
 
   constructor(props) {
-    super(props)
+    super(props);
   
     this.state = {
       shapes: []
-    }
-  }
-
-  handleUpdate = (i, data) => {
-    const shapes = this.state.shapes;
-
-    if (i === -2) {
-      shapes.forEach((s, i) => {
-        if (s.data.isDragging) {
-          shapes[i].data.x = data.x;
-          shapes[i].data.y = data.y;
-        }
-      });
-    } else if (i === -1) {
-      shapes.forEach((s, i) => {
-        shapes[i].data.isDragging = false;
-      });
-    } else {
-      shapes[i].data = data;
-    }
-
-    this.setState({ shapes });
+    };
   }
   
   addCircle = () => {
@@ -58,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Base 
+        <SimpleGraphicsBase 
           width={500} 
           height={400} 
           backgroundColor='#EEE' 

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Shape extends Component {
+class SimpleGraphic extends React.Component {
 
   handleDragStart = (e) => {
     let data = Object.assign({}, this.props);
@@ -9,4 +9,4 @@ class Shape extends Component {
   }
 }
 
-export default Shape;
+export default SimpleGraphic;

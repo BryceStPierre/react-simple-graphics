@@ -1,7 +1,8 @@
 import React from 'react';
-import Shape from './Shape';
 
-class Rectangle extends Shape {
+import SimpleGraphic from './SimpleGraphic';
+
+class Rectangle extends SimpleGraphic {
   render() {
     return (
       <rect 

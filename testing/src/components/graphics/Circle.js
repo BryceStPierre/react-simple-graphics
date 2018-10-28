@@ -1,7 +1,8 @@
 import React from 'react';
-import Shape from './Shape';
 
-class Circle extends Shape {
+import SimpleGraphic from './SimpleGraphic';
+
+class Circle extends SimpleGraphic {
   render () {
     return (
       <circle 

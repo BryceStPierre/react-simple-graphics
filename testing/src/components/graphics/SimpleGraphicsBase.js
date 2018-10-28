@@ -1,18 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import Circle from './Circle';
-import Rectangle from './Rectangle';
+// import Circle from './Circle';
+// import Rectangle from './Rectangle';
 
-class Base extends Component {
+import Factory from '../../utils/Factory';
+
+import { updateTypes } from '../../utils/updateTypes';
+
+class SimpleGraphicsBase extends Component {
   
   handleDragging = (e) => {
     if (e.touches && e.touches[0]) {
-      this.props.onUpdate(-2, {
+      this.props.onUpdate(updateTypes.DRAGGING, {
         x: e.touches[0].clientX,
         y: e.touches[0].clientY
       });
     } else {
-      this.props.onUpdate(-2, {
+      this.props.onUpdate(updateTypes.DRAGGING, {
         x: e.clientX,
         y: e.clientY
       });
@@ -20,7 +24,7 @@ class Base extends Component {
   }
 
   handleDragEnd = (e) => {
-    this.props.onUpdate(-1, {
+    this.props.onUpdate(updateTypes.DRAG_END, {
       isDragging: false
     });
   }
@@ -36,17 +40,10 @@ class Base extends Component {
         onTouchEnd={this.handleDragEnd} 
       >
         <rect width='100%' height='100%' fill={this.props.backgroundColor} />
-        {
-          this.props.graphics.map((g, i) => {
-            if (g.type === 'Circle')
-              return <Circle {...g.data} key={i} index={i} onUpdate={this.props.onUpdate} />;
-            else if (g.type === 'Rectangle')
-              return <Rectangle {...g.data} key={i} index={i} onUpdate={this.props.onUpdate} />;
-          })
-        }
+        { this.props.graphics.map((g, i) => Factory.createGraphic(g, i, this.props.onUpdate)) }
       </svg>
     )
   }
 }
 
-export default Base;
+export default SimpleGraphicsBase;
