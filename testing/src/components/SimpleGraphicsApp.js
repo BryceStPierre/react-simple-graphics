@@ -21,8 +21,13 @@ class SimpleGraphicsApp extends React.Component {
       shapes[data.index].data.scalingY = data.y;
     } else if (i === updateTypes.SCALING) {
       shapes.forEach((s, i) => {
-        if (s.data.isScaling && (s.data.r + data.x - shapes[i].data.scalingX >= 10)) {
-          shapes[i].data.r += data.x - shapes[i].data.scalingX;
+        // var amount = (data.x - shapes[i].data.scalingX) / 2;
+        // if (s.data.isScaling && (s.data.r + amount >= 10)) {
+        //   shapes[i].data.r += amount;
+        // }
+        if (s.data.isScaling) {
+          var newR = Math.sqrt(Math.pow(s.data.x - data.x, 2) + Math.pow(s.data.y - data.y, 2));
+          shapes[i].data.r = Math.sqrt(Math.pow(newR, 2) / 2) - 2;
         }
       });
     } else if (i === updateTypes.SCALE_END) {

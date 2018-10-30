@@ -9,10 +9,10 @@ class Circle extends Graphic {
         {
           this.props.isSelected && <rect 
             className=''
-            x={this.props.x - this.props.r - 5}
-            y={this.props.y - this.props.r - 5}
-            width={this.props.r * 2 + 10}
-            height={this.props.r * 2 + 10}
+            x={this.props.x - this.props.r - 2}
+            y={this.props.y - this.props.r - 2}
+            width={this.props.r * 2 + 4}
+            height={this.props.r * 2 + 4}
             fill='none'
             stroke='#111'
             strokeWidth={1}
@@ -21,8 +21,8 @@ class Circle extends Graphic {
         {
           this.props.isSelected && <circle 
             className='resize-handle'
-            cx={this.props.x + this.props.r + 5}
-            cy={this.props.y + this.props.r + 5}
+            cx={this.props.x + this.props.r + 2}
+            cy={this.props.y + this.props.r + 2}
             r={6}
             fill='#111'
 
