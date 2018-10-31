@@ -15,18 +15,15 @@ class Base extends Component {
         x: e.touches[0].clientX,
         y: e.touches[0].clientY
       });
-
       this.props.onGraphicUpdate(updateTypes.SCALING, {
         x: e.touches[0].clientX,
         y: e.touches[0].clientY
       });
-
     } else {
       this.props.onGraphicUpdate(updateTypes.DRAGGING, {
         x: e.clientX,
         y: e.clientY
       });
-
       this.props.onGraphicUpdate(updateTypes.SCALING, {
         x: e.clientX,
         y: e.clientY

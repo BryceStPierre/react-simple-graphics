@@ -7,27 +7,14 @@ class Circle extends Graphic {
     return (
       <g>
         {
-          this.props.isSelected && <rect 
-            className=''
+          this.props.isSelected && <rect
             x={this.props.x - this.props.r - 2}
             y={this.props.y - this.props.r - 2}
             width={this.props.r * 2 + 4}
             height={this.props.r * 2 + 4}
             fill='none'
             stroke='#111'
-            strokeWidth={1}
-          />
-        }
-        {
-          this.props.isSelected && <circle 
-            className='resize-handle'
-            cx={this.props.x + this.props.r + 2}
-            cy={this.props.y + this.props.r + 2}
-            r={6}
-            fill='#111'
-
-            onMouseDown={this.handleScaleStart}
-            onTouchStart={this.handleScaleStart}
+            strokeWidth={2}
           />
         }
         <circle 
@@ -39,9 +26,20 @@ class Circle extends Graphic {
           onClick={this.handleSelect}
           onMouseDown={this.handleDragStart}
           onTouchStart={this.handleDragStart}
-          // stroke='#111'
-          // strokeWidth={this.props.isSelected ? 3 : 0}
         />
+        {
+          this.props.isSelected && <polygon 
+            className='resize-handle'
+            points={[
+              [this.props.x + this.props.r + 2, this.props.y + this.props.r + 2],
+              [this.props.x + this.props.r - 12, this.props.y + this.props.r + 2],
+              [this.props.x + this.props.r + 2, this.props.y + this.props.r - 12]
+            ].map(v => `${v[0]},${v[1]}`).join(" ")}
+            fill='#111'
+            onMouseDown={this.handleScaleStart}
+            onTouchStart={this.handleScaleStart}
+          />
+        }
       </g>
     );
   }

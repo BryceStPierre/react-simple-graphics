@@ -18,11 +18,6 @@ class Graphic extends React.Component {
   }
 
   handleScaleStart = (e) => {
-    console.log({
-      index: this.props.index,
-      x: e.clientX,
-      y: e.clientY
-    });
     this.props.onGraphicUpdate(updateTypes.SCALE_START, {
       index: this.props.index,
       x: e.clientX,
