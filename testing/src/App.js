@@ -23,6 +23,10 @@ class App extends SimpleGraphicsApp {
     this.setState({ shapes: this.state.shapes.concat(Factory.createRectangle()) });
   }
 
+  addPolygon = () => {
+    this.setState({ shapes: this.state.shapes.concat(Factory.createPolygon()) });
+  }
+
   render() {
     return (
       <div>
@@ -36,6 +40,7 @@ class App extends SimpleGraphicsApp {
         />
         <button onClick={this.addCircle}>Add Circle</button>
         <button onClick={this.addRectangle}>Add Rectangle</button>
+        <button onClick={this.addPolygon}>Add Polygon</button>
         <button onClick={() => { console.log(this.state.shapes); }}>Log</button>
       </div>
     );
