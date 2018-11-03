@@ -3,14 +3,6 @@ import React from 'react';
 import { updateTypes } from '../utils/updateTypes';
 
 class SimpleGraphicsApp extends React.Component {
-  
-  handleBaseUpdate = () => {
-    const shapes = this.state.shapes;
-    shapes.forEach((s, i) => {
-      s.data.isSelected = false;
-    });
-    this.setState({ shapes });
-  }
 
   fireScaleStart = (i, data) => {
     const shapes = this.state.shapes;
@@ -60,6 +52,14 @@ class SimpleGraphicsApp extends React.Component {
     const shapes = this.state.shapes;
     shapes.forEach((s, i) => {
       shapes[i].data.isDragging = false;
+    });
+    this.setState({ shapes });
+  }
+
+  handleBaseUpdate = () => {
+    const shapes = this.state.shapes;
+    shapes.forEach((s, i) => {
+      s.data.isSelected = false;
     });
     this.setState({ shapes });
   }

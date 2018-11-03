@@ -3,7 +3,7 @@ import React from 'react';
 import SimpleGraphicsApp from './components/SimpleGraphicsApp';
 import Base from './components/Base';
 
-import Factory from './utils/Factory';
+import DataUtils from './utils/DataUtils';
 
 class App extends SimpleGraphicsApp {
 
@@ -16,15 +16,15 @@ class App extends SimpleGraphicsApp {
   }
   
   addCircle = () => {
-    this.setState({ shapes: this.state.shapes.concat(Factory.createCircle()) });
+    this.setState({ shapes: this.state.shapes.concat(DataUtils.circle()) });
   }
 
   addRectangle = () => {
-    this.setState({ shapes: this.state.shapes.concat(Factory.createRectangle()) });
+    this.setState({ shapes: this.state.shapes.concat(DataUtils.rectangle()) });
   }
 
   addPolygon = () => {
-    this.setState({ shapes: this.state.shapes.concat(Factory.createPolygon()) });
+    this.setState({ shapes: this.state.shapes.concat(DataUtils.polygon()) });
   }
 
   render() {

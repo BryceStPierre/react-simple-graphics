@@ -2,11 +2,3 @@ body {
   margin: 0;
   padding: 0;
 }
-
-.g {
-  cursor: pointer;
-}
-
-.resize-handle {
-  cursor: nw-resize;
-}

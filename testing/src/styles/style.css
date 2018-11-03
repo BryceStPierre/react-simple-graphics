@@ -1,0 +1,7 @@
+.g {
+  cursor: pointer;
+}
+
+.resize-handle {
+  cursor: nw-resize;
+}
