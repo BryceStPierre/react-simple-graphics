@@ -1,28 +1,33 @@
 import React from 'react';
 
-import { updateTypes } from '../../utils/updateTypes';
+import { events } from '../../utils/events';
 
 class Graphic extends React.Component {
 
   handleSelect = (e) => {
-    let data = Object.assign({}, this.props);
-    data.isSelected = true;
-    this.props.onGraphicUpdate(this.props.index, data);
+    this.props.onEvent(events.SELECT, {
+      index: this.props.index,
+      isSelected: true
+    });
   }
 
   handleDragStart = (e) => {
-    let data = Object.assign({}, this.props);
-    data.isSelected = true;
-    data.isDragging = true;
-    this.props.onGraphicUpdate(this.props.index, data);
+    this.props.onEvent(events.DRAG_START, {
+      index: this.props.index,
+      isSelected: true,
+      isDragging: true
+    });
   }
 
   handleScaleStart = (e) => {
-    this.props.onGraphicUpdate(updateTypes.SCALE_START, {
+    this.props.onEvent(events.SCALE_START, {
       index: this.props.index,
-      x: e.clientX,
-      y: e.clientY
+      isScaling: true
     });
+  }
+
+  getEvent = (e) => {
+    return e.touches && e.touches[0] ? e.touches[0] : e;
   }
 }
 

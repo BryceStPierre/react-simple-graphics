@@ -3,6 +3,19 @@ import React from 'react';
 import Graphic from './Graphic';
 
 class Rectangle extends Graphic {
+
+  static handleDragging = (data, inputs) => {
+    data.x = inputs.x;
+    data.y = inputs.y;
+    return data;
+  }
+
+  static handleScaling = (data, inputs) => {
+    data.width = inputs.x - data.x;
+    data.height = inputs.y - data.y;
+    return data;
+  }
+
   render() {
     return (
       <g>
@@ -32,10 +45,10 @@ class Rectangle extends Graphic {
           this.props.isSelected && <polygon 
             className='resize-handle'
             points={[
-              [this.props.x + this.props.width, this.props.y + this.props.height],
-              [this.props.x + this.props.width - 12, this.props.y + this.props.height],
-              [this.props.x + this.props.width, this.props.y + this.props.height - 12]
-            ].map(v => `${v[0]},${v[1]}`).join(" ")}
+              { x: this.props.x + this.props.width, y: this.props.y + this.props.height },
+              { x: this.props.x + this.props.width - 12, y: this.props.y + this.props.height },
+              { x: this.props.x + this.props.width, y: this.props.y + this.props.height - 12 }
+            ].map(p => `${p.x},${p.y}`).join(" ")}
             fill='#111'
             onMouseDown={this.handleScaleStart}
             onTouchStart={this.handleScaleStart}

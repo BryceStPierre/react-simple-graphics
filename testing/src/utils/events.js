@@ -1,9 +1,9 @@
 export const events = {
-  SCALE_START: 0,
-  SCALING: 0,
-  SCALE_END: 0,
   DRAG_START: 0,
-  DRAGGING: 0,
-  DRAG_END: 0,
-  SELECT: 0
+  DRAGGING: 1,
+  DRAG_END: 2,
+  SCALE_START: 3,
+  SCALING: 4,
+  SCALE_END: 5,
+  SELECT: 6
 };

@@ -9,6 +9,7 @@ class DataUtils {
         r: 30, 
         fill: 'red',
         isDragging: false,
+        isScaling: false,
         isSelected: false
       }
     };
@@ -24,6 +25,7 @@ class DataUtils {
         height: 75, 
         fill: 'green',
         isDragging: false,
+        isScaling: false,
         isSelected: false
       }
     };
@@ -43,6 +45,7 @@ class DataUtils {
         ],
         fill: 'blue',
         isDragging: false,
+        isScaling: false,
         isSelected: false
       }
     };

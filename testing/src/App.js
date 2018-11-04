@@ -1,11 +1,9 @@
 import React from 'react';
 
-import SimpleGraphicsApp from './components/SimpleGraphicsApp';
-import Base from './components/Base';
-
+import GraphicsContainer from './components/GraphicsContainer';
 import DataUtils from './utils/DataUtils';
 
-class App extends SimpleGraphicsApp {
+class App extends React.Component {
 
   constructor(props) {
     super(props);
@@ -15,32 +13,39 @@ class App extends SimpleGraphicsApp {
     };
   }
   
+  handleUpdate = (shapes) => {
+    this.setState({ shapes });
+  } 
+
   addCircle = () => {
     this.setState({ shapes: this.state.shapes.concat(DataUtils.circle()) });
-  }
-
-  addRectangle = () => {
-    this.setState({ shapes: this.state.shapes.concat(DataUtils.rectangle()) });
   }
 
   addPolygon = () => {
     this.setState({ shapes: this.state.shapes.concat(DataUtils.polygon()) });
   }
 
+  addRectangle = () => {
+    this.setState({ shapes: this.state.shapes.concat(DataUtils.rectangle()) });
+  }
+
   render() {
     return (
       <div>
-        <Base 
-          width={500} 
-          height={400} 
-          backgroundColor='#EEE' 
-          graphics={this.state.shapes} 
-          onBaseUpdate={this.handleBaseUpdate}
-          onGraphicUpdate={this.handleGraphicUpdate} 
+        <GraphicsContainer 
+          width={500}
+          height={400}
+          fill='#EEE'
+          responsive
+          graphics={this.state.shapes}
+          onUpdate={this.handleUpdate}
         />
         <button onClick={this.addCircle}>Add Circle</button>
-        <button onClick={this.addRectangle}>Add Rectangle</button>
+        <br />
         <button onClick={this.addPolygon}>Add Polygon</button>
+        <br />
+        <button onClick={this.addRectangle}>Add Rectangle</button>
+        <br />
         <button onClick={() => { console.log(this.state.shapes); }}>Log</button>
       </div>
     );
