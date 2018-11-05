@@ -17,7 +17,7 @@ class GraphicsContainer extends React.Component {
     });
     graphics[d.index].data.isSelected = d.isSelected;
     graphics[d.index].data.isDragging = d.isDragging;
-    return graphics;
+    this.props.onUpdate(graphics);
   }
 
   handleDragging = (d) => {
@@ -28,17 +28,18 @@ class GraphicsContainer extends React.Component {
       return graphics;
 
     graphics[index].data = GraphicUtils.drag(graphics[index].type, graphics[index].data, d);
-    return graphics;
+    this.props.onUpdate(graphics);
   }
 
   handleDragEnd = (d) => {
-    return this.props.graphics.map(g => { g.data.isDragging = false; return g; });
+    let graphics = this.props.graphics.map(g => { g.data.isDragging = false; return g; });
+    this.props.onUpdate(graphics);
   }
 
   handleScaleStart = (d) => {
     let graphics = this.props.graphics.slice();
     graphics[d.index].data.isScaling = d.isScaling;
-    return graphics;
+    this.props.onUpdate(graphics);
   }
 
   handleScaling = (d) => {
@@ -46,35 +47,34 @@ class GraphicsContainer extends React.Component {
     let index = this.props.graphics.findIndex(g => g.data.isScaling);
   
     if (index === -1) 
-      return graphics;
-
+      return;
+      
     graphics[index].data = GraphicUtils.scale(graphics[index].type, graphics[index].data, d);
-    return graphics;
+    this.props.onUpdate(graphics);
   }
 
   handleScaleEnd = (d) => {
-    return this.props.graphics.map(g => { g.data.isScaling = false; return g; });
+    let graphics = this.props.graphics.map(g => { g.data.isScaling = false; return g; });
+    this.props.onUpdate(graphics);
   }
 
   handleSelect = (d) => {
     let graphics = this.props.graphics.map(g => { g.data.isSelected = false; return g; });
     graphics[d.index].data.isSelected = d.isSelected;
-    return graphics;
+    this.props.onUpdate(graphics);
   }
 
   handleEvent = (e, data) => {
-    let graphics;
     switch (e) {
-      case events.DRAG_START: graphics = this.handleDragStart(data); break;
-      case events.DRAGGING: graphics = this.handleDragging(data); break;
-      case events.DRAG_END: graphics = this.handleDragEnd(data); break;
-      case events.SCALE_START: graphics = this.handleScaleStart(data); break;
-      case events.SCALING: graphics = this.handleScaling(data); break;
-      case events.SCALE_END: graphics = this.handleScaleEnd(data); break;
-      case events.SELECT: graphics = this.handleSelect(data); break;
+      case events.DRAG_START: this.handleDragStart(data); break;
+      case events.DRAGGING: this.handleDragging(data); break;
+      case events.DRAG_END: this.handleDragEnd(data); break;
+      case events.SCALE_START: this.handleScaleStart(data); break;
+      case events.SCALING: this.handleScaling(data); break;
+      case events.SCALE_END: this.handleScaleEnd(data); break;
+      case events.SELECT: this.handleSelect(data); break;
       default:
     }
-    this.props.onUpdate(graphics);
   }
 
   handleSelectNone = (e) => {
