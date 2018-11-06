@@ -13,19 +13,17 @@ class Polygon extends Graphic {
   }
 
   static handleScaling = (data, inputs) => {
-    let x = Math.min(...data.points.map(p => p.x)) - 2;
-    let y = Math.min(...data.points.map(p => p.y)) - 2;
-    let width = Math.max(...data.points.map(p => p.x)) - x + 2;
-    let height = Math.max(...data.points.map(p => p.y)) - y + 2;
+    let minX = Math.min(...data.points.map(p => p.x));
+    let minY = Math.min(...data.points.map(p => p.y));
+    let width = Math.max(...data.points.map(p => p.x)) - minX;
+    let height = Math.max(...data.points.map(p => p.y)) - minY;
+    let translatedPoints = data.points.map(p => ({ x: p.x - minX, y: p.y - minY }));
 
-    let scaleX = (inputs.x - x) / width;
-    let scaleY = (inputs.y - y) / height;
+    let scaleX = (inputs.x - minX) / width;
+    let scaleY = (inputs.y - minY) / height;
+    let scaledPoints = translatedPoints.map(p => ({ x: scaleX * p.x, y: scaleY * p.y }));
 
-    console.log({
-      scaleX: scaleX,
-      scaleY: scaleY
-    });
-    data.points = data.points.map(p => ({ x: x + scaleX * (p.x - x + 2), y: y + scaleY * (p.y - y + 2)}));
+    data.points = scaledPoints.map(p => ({ x: minX + p.x, y: minY + p.y }));
     return data;
   }
 
