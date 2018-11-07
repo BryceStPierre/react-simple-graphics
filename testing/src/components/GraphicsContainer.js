@@ -1,8 +1,9 @@
 import React from 'react';
 
-import Rectangle from './graphics/Rectangle';
+import Text from './graphics/Text';
 import Circle from './graphics/Circle';
 import Polygon from './graphics/Polygon';
+import Rectangle from './graphics/Rectangle';
 
 import { events } from '../utils/events';
 import GraphicUtils from '../utils/GraphicUtils';
@@ -129,6 +130,7 @@ class GraphicsContainer extends React.Component {
         {
           this.props.graphics.map((g, i) => {
             switch (g.type) {
+              case 'Text': return <Text key={i} index={i} onEvent={this.handleEvent} {...g.data} />;
               case 'Circle': return <Circle key={i} index={i} onEvent={this.handleEvent} {...g.data} />;
               case 'Polygon': return <Polygon key={i} index={i} onEvent={this.handleEvent} {...g.data} />;
               case 'Rectangle': return <Rectangle key={i} index={i} onEvent={this.handleEvent} {...g.data} />;

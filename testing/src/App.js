@@ -17,6 +17,10 @@ class App extends React.Component {
     this.setState({ shapes });
   } 
 
+  addText = () => {
+    this.setState({ shapes: this.state.shapes.concat(DataUtils.text()) });
+  }
+
   addCircle = () => {
     this.setState({ shapes: this.state.shapes.concat(DataUtils.circle()) });
   }
@@ -40,6 +44,8 @@ class App extends React.Component {
           graphics={this.state.shapes}
           onUpdate={this.handleUpdate}
         />
+        <button onClick={this.addText}>Add Text</button>
+        <br />
         <button onClick={this.addCircle}>Add Circle</button>
         <br />
         <button onClick={this.addPolygon}>Add Polygon</button>

@@ -1,5 +1,20 @@
 class DataUtils {
 
+  static text = () => {
+    return {
+      type: 'Text',
+      data: {
+        x: 75,
+        y: 75,
+        fill: '#111',
+        text: 'Text',
+        isDragging: false,
+        isScaling: false,
+        isSelected: false
+      }
+    };
+  }
+
   static circle = () => {
     return { 
       type: 'Circle',

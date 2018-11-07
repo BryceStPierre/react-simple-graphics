@@ -5,3 +5,7 @@
 .resize-handle {
   cursor: nw-resize;
 }
+
+.text {
+  cursor: text;
+}
