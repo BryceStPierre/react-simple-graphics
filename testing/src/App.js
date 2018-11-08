@@ -44,8 +44,6 @@ class App extends React.Component {
           graphics={this.state.shapes}
           onUpdate={this.handleUpdate}
         />
-        <button onClick={this.addText}>Add Text</button>
-        <br />
         <button onClick={this.addCircle}>Add Circle</button>
         <br />
         <button onClick={this.addPolygon}>Add Polygon</button>
